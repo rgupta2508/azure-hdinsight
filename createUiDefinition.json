@@ -17,7 +17,7 @@
       {
         "name": "clusterLoginUserName",
         "type": "Microsoft.Compute.UserNameTextBox",
-        "label": "Username",
+        "label": "Cluster Login User Name",
         "toolTip": "Cluster login username for the hdinsight.",
         "osPlatform": "Linux",
         "constraints": {
@@ -26,7 +26,7 @@
       },
       {
         "name": "clusterLoginPassword",
-        
+        "type": "Microsoft.Compute.CredentialsCombo",
         "label": {
           "password": "Cluster Login Password",
           "confirmPassword": "Confirm password"
@@ -34,12 +34,12 @@
         "constraints": {
           "required": true
         },
-        "osPlatform": "Linux"
+        "osPlatform": "Windows"
       },
       {
         "name": "sshUserName",
         "type": "Microsoft.Compute.UserNameTextBox",
-        "label": "SSH Username",
+        "label": "SSH User Name",
         "toolTip": "SSH credentials can be used to remotely access the cluster.",
         "osPlatform": "Linux",
         "constraints": {
@@ -48,7 +48,7 @@
       },
       {
         "name": "sshPassword",
-      
+        "type": "Microsoft.Compute.CredentialsCombo",
         "label": {
           "password": "SSH Login Password",
           "confirmPassword": "Confirm password"
@@ -56,7 +56,7 @@
         "constraints": {
           "required": true
         },
-        "osPlatform": "Linux"
+        "osPlatform": "Windows"
       }
     ],
     "steps": [],
@@ -64,8 +64,7 @@
       "clusterName": "[basics('clusterName')]",
       "clusterLoginUserName": "[basics('clusterLoginUserName')]",
       "sshUserName": "[basics('sshUserName')]",
-      "location": "[location()]",
-      "password": "[basics('clusterLoginPassword')]",
+      "clusterLoginPassword": "[basics('clusterLoginPassword')]",
       "sshPassword": "[basics('sshPassword')]"
     }
   }
