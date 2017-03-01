@@ -48,7 +48,7 @@
       },
       {
         "name": "sshPassword",
-        "type": "Microsoft.Compute.CredentialsCombo",
+        "type": "Microsoft.Compute.PasswordBox",
         "label": {
           "password": "SSH Login Password",
           "confirmPassword": "Confirm password"
