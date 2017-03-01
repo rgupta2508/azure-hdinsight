@@ -4,42 +4,69 @@
   "parameters": {
     "basics": [
       {
-        "name": "sharePointFarmName",
+        "name": "clusterName",
         "type": "Microsoft.Common.TextBox",
-        "label": "SharePoint farm name",
-        "defaultValue": "spfarm",
+        "label": "Cluster name",
+        "toolTip": "The name of the new Sample Linux cluster.",
         "constraints": {
           "required": true,
-          "regex": "^[a-z0-9A-Z]{1,10}$",
-          "validationMessage": "Only letters and numbers are allowed, and the value must be 1-10 characters long."
+          "regex": "^[a-z0-9]{3,24}$",
+          "validationMessage": "Cluster names must be between 3 and 24 characters long, and can contain only numbers and lowercase letters."
         }
+      },
+      {
+        "name": "clusterLoginUserName",
+        "type": "Microsoft.Compute.UserNameTextBox",
+        "label": "Username",
+        "toolTip": "Cluster login username for the hdinsight.",
+        "osPlatform": "Linux",
+        "constraints": {
+          "required": true
+        }
+      },
+      {
+        "name": "clusterLoginPassword",
+        "type": "Microsoft.Compute.CredentialsCombo",
+        "label": {
+          "password": "Cluster Login Password",
+          "confirmPassword": "Confirm password"
+        },
+        "constraints": {
+          "required": true
+        },
+        "osPlatform": "Linux"
+      },
+      {
+        "name": "sshUserName",
+        "type": "Microsoft.Compute.UserNameTextBox",
+        "label": "SSH Username",
+        "toolTip": "SSH credentials can be used to remotely access the cluster.",
+        "osPlatform": "Linux",
+        "constraints": {
+          "required": true
+        }
+      },
+      {
+        "name": "sshPassword",
+        "type": "Microsoft.Compute.CredentialsCombo",
+        "label": {
+          "password": "SSH Login Password",
+          "confirmPassword": "Confirm password"
+        },
+        "constraints": {
+          "required": true
+        },
+        "osPlatform": "Linux"
       }
     ],
-    "steps": [
-      
-    ],
+    "steps": [],
     "outputs": {
+      "clusterName": "[basics('clusterName')]",
+      "clusterLoginUserName": "[basics('clusterLoginUserName')]",
+      "sshUserName": "[basics('sshUserName')]",
       "location": "[location()]",
-      "sharepointFarmName": "[basics('sharePointFarmName')]",
-      "storageAccountNamePrefix": "[steps('infrastructureConfig').storageAccounts.prefix]",
-      "storageAccountType": "[steps('infrastructureConfig').storageAccounts.type]",
-      "adminUsername": "[steps('infrastructureConfig').adminUsername]",
-      "adminPassword": "[steps('infrastructureConfig').adminPassword.password]",
-      "virtualNetworkName": "[steps('infrastructureConfig').virtualNetworkName]",
-      "adVMSize": "[steps('adConfig').adVmSize]",
-      "sqlVMSize": "[steps('sqlConfig').sqlVmSize]",
-      "witnessVMSize": "[steps('sqlConfig').witnessVMSize]",
-      "spVMSize": "[steps('spConfig').spVmSize]",
-      "domainName": "[steps('adConfig').domainName]",
-      "dnsPrefix": "[steps('spConfig').spWebPublicIP.domainNameLabel]",
-      "spWebIPRGName": "[steps('spConfig').spWebPublicIP.resourceGroup]",
-      "spWebIPAddressName": "[steps('spConfig').spWebPublicIP.name]",
-      "spWebIPNewOrExisting": "[steps('spConfig').spWebPublicIP.newOrExistingOrNone]",
-      "sqlServerServiceAccountPassword": "[steps('sqlConfig').sqlServerServiceAccountPassword.password]",
-      "sharePointSetupUserAccountPassword": "[steps('spConfig').spSetupUserAccountPassword.password]",
-      "sharePointFarmAccountPassword": "[steps('spConfig').spServerFarmAccountPassword.password]",
-      "sharePointFarmPassphrasePassword": "[steps('spConfig').spServerFarmPassphrase.password]",
-      "spSiteTemplateName": "[steps('spConfig').spSiteTemplateName]"
+      "password": "[basics('clusterLoginPassword')]",
+      "sshPassword": "[basics('sshPassword')]"
     }
   }
 }
