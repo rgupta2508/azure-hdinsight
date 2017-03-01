@@ -8,5 +8,12 @@
 },
 "basics":[],
    "steps":[],
-   "outputs":{}
+   "outputs":{"clusterName":"[basics('clusterName')]",
+"adminUsername":"[basics('adminUsername')]",
+"clusterNodeCount":"[steps('SampleClusterConfig').clusterNodeCount]",
+"clusterVmSize":"[steps('SampleClusterConfig').clusterVmSize]",
+"location":"[location()]",
+"authenticationType":"[basics('SSHCredntials').authenticationType]",
+"password":"[basics('SSHCredntials').password]",
+"sshKey":"[basics('SSHCredntials').sshPublicKey]"}
 }
