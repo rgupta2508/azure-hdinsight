@@ -1,6 +1,12 @@
 {
-  "handler": "Microsoft.Compute.MultiVm",
-  "version": "0.0.1-preview",
+   "handler": "Microsoft.HDInsight",
+    "version": "0.0.1-preview",
+    "clusterFilters": {
+        "types": [ "HBase"],
+        "tiers": ["Standard"],
+        "versions": ["3.4"]
+    }
+,
   "parameters": {
     "basics": [{
       "name": "clusterName",
