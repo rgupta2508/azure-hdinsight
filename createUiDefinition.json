@@ -19,7 +19,7 @@
         "type": "Microsoft.Compute.UserNameTextBox",
         "label": "Username",
         "toolTip": "Cluster login username for the hdinsight.",
-        "osPlatform": "Linux",
+        "osPlatform": "Windows",
         "constraints": {
           "required": true
         }
@@ -34,14 +34,14 @@
         "constraints": {
           "required": true
         },
-        "osPlatform": "Linux"
+        "osPlatform": "Windows"
       },
       {
         "name": "sshUserName",
         "type": "Microsoft.Compute.UserNameTextBox",
         "label": "SSH Username",
         "toolTip": "SSH credentials can be used to remotely access the cluster.",
-        "osPlatform": "Linux",
+        "osPlatform": "Windows",
         "constraints": {
           "required": true
         }
@@ -56,7 +56,7 @@
         "constraints": {
           "required": true
         },
-        "osPlatform": "Linux"
+        "osPlatform": "Windows"
       }
     ],
     "steps": [],
