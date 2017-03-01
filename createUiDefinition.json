@@ -1,19 +1,45 @@
 {
-   "handler": "Microsoft.HDInsight",
-    "version": "0.0.1-preview",
-    "clusterFilters": {
-        "types": [ "HBase"],
-        "tiers": ["Standard"],
-        "versions": ["3.4"]
-},
-"basics":[],
-   "steps":[],
-   "outputs":{"clusterName":"[basics('clusterName')]",
-"adminUsername":"[basics('adminUsername')]",
-"clusterNodeCount":"[steps('SampleClusterConfig').clusterNodeCount]",
-"clusterVmSize":"[steps('SampleClusterConfig').clusterVmSize]",
-"location":"[location()]",
-"authenticationType":"[basics('SSHCredntials').authenticationType]",
-"password":"[basics('SSHCredntials').password]",
-"sshKey":"[basics('SSHCredntials').sshPublicKey]"}
+  "handler": "Microsoft.Compute.MultiVm",
+  "version": "0.0.1-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "sharePointFarmName",
+        "type": "Microsoft.Common.TextBox",
+        "label": "SharePoint farm name",
+        "defaultValue": "spfarm",
+        "constraints": {
+          "required": true,
+          "regex": "^[a-z0-9A-Z]{1,10}$",
+          "validationMessage": "Only letters and numbers are allowed, and the value must be 1-10 characters long."
+        }
+      }
+    ],
+    "steps": [
+      
+    ],
+    "outputs": {
+      "location": "[location()]",
+      "sharepointFarmName": "[basics('sharePointFarmName')]",
+      "storageAccountNamePrefix": "[steps('infrastructureConfig').storageAccounts.prefix]",
+      "storageAccountType": "[steps('infrastructureConfig').storageAccounts.type]",
+      "adminUsername": "[steps('infrastructureConfig').adminUsername]",
+      "adminPassword": "[steps('infrastructureConfig').adminPassword.password]",
+      "virtualNetworkName": "[steps('infrastructureConfig').virtualNetworkName]",
+      "adVMSize": "[steps('adConfig').adVmSize]",
+      "sqlVMSize": "[steps('sqlConfig').sqlVmSize]",
+      "witnessVMSize": "[steps('sqlConfig').witnessVMSize]",
+      "spVMSize": "[steps('spConfig').spVmSize]",
+      "domainName": "[steps('adConfig').domainName]",
+      "dnsPrefix": "[steps('spConfig').spWebPublicIP.domainNameLabel]",
+      "spWebIPRGName": "[steps('spConfig').spWebPublicIP.resourceGroup]",
+      "spWebIPAddressName": "[steps('spConfig').spWebPublicIP.name]",
+      "spWebIPNewOrExisting": "[steps('spConfig').spWebPublicIP.newOrExistingOrNone]",
+      "sqlServerServiceAccountPassword": "[steps('sqlConfig').sqlServerServiceAccountPassword.password]",
+      "sharePointSetupUserAccountPassword": "[steps('spConfig').spSetupUserAccountPassword.password]",
+      "sharePointFarmAccountPassword": "[steps('spConfig').spServerFarmAccountPassword.password]",
+      "sharePointFarmPassphrasePassword": "[steps('spConfig').spServerFarmPassphrase.password]",
+      "spSiteTemplateName": "[steps('spConfig').spSiteTemplateName]"
+    }
+  }
 }
